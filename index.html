@@ -1,0 +1,249 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+		<title>ft</title>
+	</head>
+
+	<body>
+	<div class="container">
+		<div class="spacer">
+			<div class="row">
+				<div class="col-lg-4 col-lg-offset-4" id="plantList">
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+
+	<script type="text/jsx">
+	/** @jsx React.DOM **/
+
+	var PlantInfo = React.createClass({
+		getInitialState: function() {
+			return {
+				lastPlantsUrl: ''
+			}
+		},
+
+		componentDidMount: function () {
+			$.get(this.props.source,function(result) {
+				// if(this.isMounted()) {
+					PLANTS = result.plants;
+				// }
+			})
+		},
+
+		render: function () { return false; }
+	});
+
+	var PlantDurationRow = React.createClass({
+		    render: function() {
+		        return (<tr><th colSpan="2">{this.props.duration}</th></tr>);
+		    }
+		});
+
+		var PlantRow = React.createClass({
+		    render: function() {
+		        var name = this.props.plant.name;
+		        return (
+		            <tr>
+		                <td>{name}</td>
+		                <td>{this.props.plant.scientific_name}</td>
+		            </tr>
+		        );
+		    }
+		});
+
+		var PlantTable = React.createClass({
+		    render: function() {
+		        var rows = [];
+		        var lastDuration = null;
+		        this.props.plants.forEach(function(plant) {
+		            if (plant.duration !== lastDuration) {
+		                rows.push(<PlantDurationRow duration={plant.duration} key={plant.duration} />);
+		            }
+		            rows.push(<PlantRow plant={plant} key={plant.name} />);
+		            lastDuration = plant.duration;
+		        });
+		        return (
+		            <table>
+		                <thead>
+		                    <tr>
+		                        <th>Name</th>
+		                        <th>Scientific Name</th>
+		                    </tr>
+		                </thead>
+		                <tbody>{rows}</tbody>
+		            </table>
+		        );
+		    }
+		});
+
+		var SearchBar = React.createClass({
+		    render: function() {
+		        return (
+		            <form>
+		                <input type="text" placeholder="Search..." />
+		            </form>
+		        );
+		    }
+		});
+
+		var FilterablePlantTable = React.createClass({
+		    render: function() {
+		        return (
+		            <div>
+		                <SearchBar />
+		                <PlantTable plants={this.props.plants} />
+		            </div>
+		        );
+		    }
+		});
+
+
+		var PLANTS = [
+		{
+				id: 3849,
+				name: "'ahakea",
+				description: null,
+				create_dt: null,
+				user_id: null,
+				zones: null,
+				created_at: "2015-09-07T13:49:29.288Z",
+				updated_at: "2015-09-07T13:49:29.288Z",
+				color: "",
+				color_family: null,
+				states: "USA (HI)",
+				growth_season: "",
+				shopping_list_id: null,
+				garden_id: null,
+				duration: "Perennial",
+				scientific_name: "Bobea timonioides",
+				foliage_color: "",
+				seed_color: null,
+				fruit_color: "",
+				shade_tolerance: null
+			},
+			{
+				id: 3847,
+				name: "'ahakea lau nui",
+				description: null,
+				create_dt: null,
+				user_id: null,
+				zones: null,
+				created_at: "2015-09-07T13:49:29.283Z",
+				updated_at: "2015-09-07T13:49:29.283Z",
+				color: "",
+				color_family: null,
+				states: "USA (HI)",
+				growth_season: "",
+				shopping_list_id: null,
+				garden_id: null,
+				duration: "Perennial",
+				scientific_name: "Bobea elatior",
+				foliage_color: "",
+				seed_color: null,
+				fruit_color: "",
+				shade_tolerance: null
+			},
+			{
+				id: 7594,
+				name: "'aiakanene",
+				description: null,
+				create_dt: null,
+				user_id: null,
+				zones: null,
+				created_at: "2015-09-07T13:49:40.090Z",
+				updated_at: "2015-09-07T13:49:40.090Z",
+				color: "",
+				color_family: null,
+				states: "USA (HI)",
+				growth_season: "",
+				shopping_list_id: null,
+				garden_id: null,
+				duration: "Perennial",
+				scientific_name: "Coprosma ernodeoides",
+				foliage_color: "",
+				seed_color: null,
+				fruit_color: "",
+				shade_tolerance: null
+			},
+			{
+				id: 25434,
+				name: "'akala",
+				description: null,
+				create_dt: null,
+				user_id: null,
+				zones: null,
+				created_at: "2015-09-07T13:50:28.772Z",
+				updated_at: "2015-09-07T13:50:28.772Z",
+				color: "",
+				color_family: null,
+				states: "USA (HI)",
+				growth_season: "",
+				shopping_list_id: null,
+				garden_id: null,
+				duration: "Perennial",
+				scientific_name: "Rubus macraei",
+				foliage_color: "",
+				seed_color: null,
+				fruit_color: "",
+				shade_tolerance: null
+			},
+			{
+				id: 6367,
+				name: "'akoko",
+				description: null,
+				create_dt: null,
+				user_id: null,
+				zones: null,
+				created_at: "2015-09-07T13:49:36.981Z",
+				updated_at: "2015-09-07T13:49:36.981Z",
+				color: "",
+				color_family: null,
+				states: "USA (HI)",
+				growth_season: "",
+				shopping_list_id: null,
+				garden_id: null,
+				duration: "Perennial",
+				scientific_name: "Chamaesyce arnottiana",
+				foliage_color: "",
+				seed_color: null,
+				fruit_color: "",
+				shade_tolerance: null
+			},
+			{
+				id: 8567,
+				name: "'aku",
+				description: null,
+				create_dt: null,
+				user_id: null,
+				zones: null,
+				created_at: "2015-09-07T13:49:42.927Z",
+				updated_at: "2015-09-07T13:49:42.927Z",
+				color: "",
+				color_family: null,
+				states: "USA (HI)",
+				growth_season: "",
+				shopping_list_id: null,
+				garden_id: null,
+				duration: "Perennial",
+				scientific_name: "Cyanea angustifolia",
+				foliage_color: "",
+				seed_color: null,
+				fruit_color: "",
+				shade_tolerance: null
+		}];
+		React.render(
+		  <PlantInfo source="http://localhost:3000/v1/plants" />,
+		  document.getElementById('plantList')
+		);
+	</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+

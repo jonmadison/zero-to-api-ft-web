@@ -1,0 +1,23 @@
+{
+  "name": "ft_web",
+  "version": "0.0.0",
+  "authors": [
+    "jon@tfftech.com"
+  ],
+  "description": "flowerthing web site",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "react": "~0.13.3"
+  }
+}
